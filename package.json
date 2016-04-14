@@ -1,0 +1,31 @@
+{
+  "name": "bolshoi-cli",
+  "version": "0.0.0",
+  "description": "cli tool for bolshoi",
+  "bin": {
+      "bolshoi": "bin/bolshoi.js"
+    },
+  "dependencies": {
+    "bolshoi-kernel": "0.0.1",
+    "commander": "^2.9.0",
+    "fs-promise": "^0.5.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihardcoder/bolshoi-cli.git"
+  },
+  "keywords": [
+    "bolshoi",
+    "cli"
+  ],
+  "author": "zhoujunpeng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ihardcoder/bolshoi-cli/issues"
+  },
+  "homepage": "https://github.com/ihardcoder/bolshoi-cli#readme"
+}
