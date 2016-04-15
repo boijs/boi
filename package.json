@@ -3,17 +3,15 @@
   "version": "0.0.0",
   "description": "cli tool for bolshoi",
   "bin": {
-      "bolshoi": "bin/bolshoi.js"
-    },
+    "bolshoi": "bin/bolshoi.js"
+  },
   "dependencies": {
+    "bluebird": "^3.3.5",
     "bolshoi-kernel": "0.0.1",
-    "commander": "^2.9.0",
-    "fs-promise": "^0.5.0"
+    "commander": "^2.9.0"
   },
   "devDependencies": {},
-  "scripts": {
-
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ihardcoder/bolshoi-cli.git"
