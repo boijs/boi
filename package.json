@@ -8,7 +8,8 @@
   "dependencies": {
     "bluebird": "^3.3.5",
     "bolshoi-kernel": "0.0.1",
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "ora": "^0.2.1"
   },
   "devDependencies": {},
   "scripts": {},
