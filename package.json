@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "description": "cli tool for boli",
     "bin": {
-        "bolshoi": "bin/boli.js"
+        "boli": "bin/boli.js"
     },
     "dependencies": {
         "bluebird": "^3.3.5",

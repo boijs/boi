@@ -12,7 +12,7 @@ let ora = require('ora');
 // let bolshoi = require('bolshoi-kernel');
 
 // local debug
-let bolshoi = require('../../bolshoi-kernel');
+let bolshoi = require('../../boli-kernel');
 let spinner = null;
 
 program.version('0.0.1');
@@ -30,7 +30,7 @@ program.command('build')
     .action(function() {
         spinner = ora('building...');
         spinner.start();
-        let _confFile = path.join(process.cwd(), '/bolshoi-conf.js');
+        let _confFile = path.join(process.cwd(), '/boli-conf.js');
 
         Promise.try(function() {
             return fs.statSync(_confFile);
