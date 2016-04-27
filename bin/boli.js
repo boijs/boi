@@ -12,7 +12,7 @@ let ora = require('ora');
 require('boli-kernel');
 
 // local debug
-// let bolshoi = require('../../boli-kernel');
+// require('../../boli-kernel');
 let spinner = null;
 
 program.version('0.0.1');
@@ -37,13 +37,12 @@ program.command('build')
         }).then(function(stat) {
             require(_confFile);
         }).then(function() {
-            boli.config.generateConfFile();
+            boli.config.runBuild();
         }).then(function() {
-            console.log('done');
             spinner.stop();
         }).catch(function(err) {
-            console.log(err);
             spinner.stop();
+            throw new Error(err);
         });
     });
 program.parse(process.argv);
