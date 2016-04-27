@@ -9,7 +9,7 @@ let path = require('path');
 let ora = require('ora');
 // let promptly = require('promptly');
 
-// let boli = require('boli-kernel');
+require('boli-kernel');
 
 // local debug
 // let bolshoi = require('../../boli-kernel');
