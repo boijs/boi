@@ -1,6 +1,6 @@
 {
   "name": "boli-cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "cli tool for boli",
   "bin": {
     "boli": "bin/boli.js"
