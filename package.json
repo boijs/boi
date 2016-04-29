@@ -1,9 +1,9 @@
 {
     "name": "boli-cli",
     "version": "0.0.8",
-    "description": "cli tool for boli",
+    "description": "cli tool for boi",
     "bin": {
-        "boli": "bin/boli.js"
+        "boli": "bin/boi.js"
     },
     "dependencies": {
         "bluebird": "^3.3.5",

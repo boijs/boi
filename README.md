@@ -1,24 +1,24 @@
-boli-cli
-========
+boi-cli
+=======
 
 基于webpack的前端工程构建工具
 
-boli is short for bolshoi
+boi is short for bolshoi
 
 ### 安装
 
 ```
-npm install boli-cli -g
+npm install boi-cli -g
 ```
 
 ### 编译项目文件
 
-1.	在项目根目录下创建文件`boli-conf.js`;
-2.	编辑`boli-conf.js`中的配置项，比如js文件的编译配置如下：
+1.	在项目根目录下创建文件`boi-conf.js`;
+2.	编辑`boi-conf.js`中的配置项，比如js文件的编译配置如下：
 
 	```
 	// 同名配置覆盖父级
-	boli.config.spec('js', {
+	boi.config.spec('js', {
 	    // 源文件扩展名
 	    extType: 'js',
 	    // 源文件使用的编码类型，值可以是单个string，也可以是数组
@@ -39,14 +39,18 @@ npm install boli-cli -g
 	});
 	```
 
-	在项目根目录下执行`boli build`
+	在项目根目录下执行`boi build`
 
 ### 使用插件
 
-编辑`boli-conf.js`，使用API `boli.use`引入插件，比如：
+编辑`boi-conf.js`，使用API `boi.use`引入插件，比如：
 
 ```
-boli.use('boli-plugin-loader-vue');
+boi.use('boi-plugin-loader-vue');
 ```
 
-boli会判断用户是否已安装此插件，如果没有，则boli会自动安装此插件。
+boi会判断用户是否已安装此插件，如果没有，则boi会自动安装此插件。
+
+如果npm被墙，请尝试以下*任意一种*方案： 1. 挂VPN； 2. 修改npm仓库到淘宝镜像`npm config set registry https://registry.npm.taobao.org`; 3. 安装cnpm。
+
+> 如果安装cnpm，请务必自行安装插件
