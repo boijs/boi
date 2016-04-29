@@ -2,17 +2,23 @@
 
 'use strict'
 
-let program = require('commander');
-let Promise = require("bluebird");
 let fs = require("fs");
 let path = require('path');
-let ora = require('ora');
+
+let Promise = require("bluebird");
+let program = require('commander');
 // let promptly = require('promptly');
 
+let ora = require('ora');
+let colors = require('colors');
+
+require('shelljs/global');
+// 引入boli-kernel模块
 require('boli-kernel');
 
 // local debug
 // require('../../boli-kernel');
+
 let spinner = null;
 
 program.version('0.0.1');
@@ -28,7 +34,7 @@ program.command('init [dir]')
 program.command('build')
     .description('build project files')
     .action(function() {
-        spinner = ora('building...\n');
+        spinner = ora(colors.blue('Building...\n'));
         spinner.start();
         let _confFile = path.join(process.cwd(), '/boli-conf.js');
 
@@ -37,7 +43,9 @@ program.command('build')
         }).then(function(stat) {
             require(_confFile);
         }).then(function() {
-            boli.config.runBuild();
+            boli.resolvePlugins();
+        }).then(function() {
+            boli.runBuild();
         }).then(function() {
             spinner.stop();
         }).catch(function(err) {

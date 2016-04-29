@@ -8,8 +8,10 @@
   "dependencies": {
     "bluebird": "^3.3.5",
     "boli-kernel": "0.0.6",
+    "colors": "^1.1.2",
     "commander": "^2.9.0",
-    "ora": "^0.2.1"
+    "ora": "^0.2.1",
+    "shelljs": "^0.7.0"
   },
   "devDependencies": {},
   "scripts": {},
