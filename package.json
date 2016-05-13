@@ -1,13 +1,13 @@
 {
-  "name": "boli-cli",
+  "name": "boi-cli",
   "version": "0.0.1",
   "description": "cli tool for boi",
   "bin": {
-    "boli": "bin/boi.js"
+    "boi": "bin/boi.js"
   },
   "dependencies": {
     "bluebird": "^3.3.5",
-    "boli-kernel": "0.0.7",
+    "boi-kernel": ">=0.0.1",
     "colors": "^1.1.2",
     "commander": "^2.9.0",
     "ora": "^0.2.1",
@@ -20,7 +20,7 @@
     "url": "git+https://github.com/ihardcoder/bolshoi-cli.git"
   },
   "keywords": [
-    "boli",
+    "boi",
     "cli"
   ],
   "author": "zhoujunpeng",
