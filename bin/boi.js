@@ -7,16 +7,15 @@ let path = require('path');
 
 let Promise = require("bluebird");
 let program = require('commander');
-// let promptly = require('promptly');
 
 let ora = require('ora');
 let colors = require('colors');
 
 require('shelljs/global');
 // 引入boi-kernel模块
-// let boi = require('boi-kernel');
+let boi = require('boi-kernel');
 // local debug
-let boi = require('../../boi-kernel');
+// let boi = require('../../boi-kernel');
 
 //将boi暴露为全局变量
 Object.defineProperty(global, 'boi', {
@@ -28,8 +27,8 @@ Object.defineProperty(global, 'boi', {
 let spinner = null;
 let confChanged = true;
 
-let watchConfFile = function(_confFile) {
-    fs.watch(_confFile, function(event, filename) {
+let watchConfFile = function(confFile) {
+    fs.watch(confFile, function(event, filename) {
         if (event === 'change') {
             console.log(colors.blue('Configuration changed'));
             confChanged = true;
