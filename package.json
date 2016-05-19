@@ -1,32 +1,32 @@
 {
-  "name": "boi-cli",
-  "version": "0.0.5",
-  "description": "cli tool for boi",
-  "bin": {
-    "boi": "bin/boi.js"
-  },
-  "dependencies": {
-    "bluebird": "^3.3.5",
-    "boi-kernel": ">=0.0.5",
-    "colors": "^1.1.2",
-    "commander": "^2.9.0",
-    "ora": "^0.2.1",
-    "shelljs": "^0.7.0"
-  },
-  "devDependencies": {},
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ihardcoder/bolshoi-cli.git"
-  },
-  "keywords": [
-    "boi",
-    "cli"
-  ],
-  "author": "zhoujunpeng",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ihardcoder/bolshoi-cli/issues"
-  },
-  "homepage": "https://github.com/ihardcoder/bolshoi-cli#readme"
+    "name": "boi-cli",
+    "version": "0.0.5",
+    "description": "cli tool for boi",
+    "bin": {
+        "boi": "bin/boi.js"
+    },
+    "dependencies": {
+        "bluebird": "^3.3.5",
+        "boi-kernel": ">=0.0.6",
+        "colors": "^1.1.2",
+        "commander": "^2.9.0",
+        "ora": "^0.2.1",
+        "shelljs": "^0.7.0"
+    },
+    "devDependencies": {},
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ihardcoder/bolshoi-cli.git"
+    },
+    "keywords": [
+        "boi",
+        "cli"
+    ],
+    "author": "zhoujunpeng",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/ihardcoder/bolshoi-cli/issues"
+    },
+    "homepage": "https://github.com/ihardcoder/bolshoi-cli#readme"
 }
