@@ -13,8 +13,12 @@
     "ora": "^0.2.1",
     "shelljs": "^0.7.0"
   },
-  "devDependencies": {},
-  "scripts": {},
+  "devDependencies": {
+    "markdown-include": "^0.4.3"
+  },
+  "scripts": {
+      "build:docs": "node build/build.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ihardcoder/bolshoi-cli.git"
