@@ -1,5 +1,4 @@
-配置API
--------
+## 配置API !heading
 
 boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 
@@ -13,7 +12,7 @@ boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 
 > 目前版本支持的配置项较少，以满足本公司需求为主，后续版本会扩充可配置模块。
 
-### basic
+### basic !heading
 
 -	`appName`：`String`，项目名称，默认值为`app`；
 -	`localPath`: `Object`，本地目录配置；
@@ -24,7 +23,7 @@ boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 	1.	`server`：`String`，cdn域名；
 	2.	`path`：`String`，项目在cdn服务器的路径。 -
 
-### js
+### js !heading
 
 -	`extType`：`String`，扩展名，默认值为js；
 -	`srcType`：`Array`，源文件的转译配置，默认值为`['es2015']`；
@@ -56,14 +55,14 @@ boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 	3.	`postLoader`：`Object`；
 	4.	`plugins`：`Array`。
 
-### style
+### style !heading
 
 style配置项与JS大体相同，有以下区别：
 
 -	没有`uglify`、`srcType`、`mutiEntriesVendor`和`files`配置项；
 -	`extType`决定css预编译器的选型。
 
-### html
+### html !heading
 
 html配置项与JS大体相同，有以下区别：
 
@@ -71,7 +70,7 @@ html配置项与JS大体相同，有以下区别：
 -	`files`: `Array`，index文件的列表，仍需遵循命名规范；
 -	`mainFilePrefix`：默认值为`'index'`。
 
-### image
+### image !heading
 
 -	`extType`：`Array`，图片文件扩展名列表；
 -	`destDir`：`String`，编译输出目录，`basic.localPath.dest`；
@@ -102,4 +101,3 @@ html配置项与JS大体相同，有以下区别：
 	    backgournd:url(http://img.daojia.com/icons.b709986b.png)
 	}
 	```
-

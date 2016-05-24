@@ -1,12 +1,35 @@
-boi-cli
-=======
+# Boi-cli
+
+  * [Get Start](#get-start)
+    * [安装](#安装)
+    * [编译项目文件](#编译项目文件)
+    * [使用插件](#使用插件)
+    * [dev server](#dev-server)
+  * [规范(v1.0.0)](#规范(v1-0-0))
+    * [目录规范](#目录规范)
+    * [命名规范](#命名规范)
+      * [JS文件命名规范](#js文件命名规范)
+      * [style文件命名规范](#style文件命名规范)
+      * [html模板文件命名规范](#html模板文件命名规范)
+    * [编码规范](#编码规范)
+      * [资源引用规范](#资源引用规范)
+      * [模块化开发规范](#模块化开发规范)
+  * [配置API](#配置api)
+    * [basic](#basic)
+    * [js](#js)
+    * [style](#style)
+    * [html](#html)
+    * [image](#image)
+  * [插件](#插件)
+    * [使用插件](#使用插件)
+    * [安装插件](#安装插件)
+
 
 boi is short for bolshoi
 
 基于webpack的前端工程构建工具。
 
-Get Start
----------
+## Get Start
 
 ### 安装
 
@@ -64,8 +87,7 @@ boi run server
 执行成功后访问`localhost:8888/views/*.html`(html文件根据具体命名改动)。boi支持动态编译，开发过程中不必多次重启dev server。
 
 
-规范(v1.0.0)
-------------
+## 规范(v1.0.0)
 
 boi框架约定了一套默认开发规范（可配置），包括目录规范、文件命名规范和部分编码规范。
 
@@ -201,9 +223,7 @@ boi框架约定了一套默认开发规范（可配置），包括目录规范�
 	> webpack虽然提供配置输出chunk文件名的API，但是AMD规范目前无法实现，也可能是本人未研究透彻，希望各位指正。
 
 
-
-配置API
--------
+## 配置API
 
 boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 
@@ -308,9 +328,42 @@ html配置项与JS大体相同，有以下区别：
 	```
 
 
+## 插件
 
-插件
-----
+boi的核心功能比较轻量，具体的功能由boi插件完成。
 
-@todo
+### 使用插件
+
+使用插件API为`boi.use`，修改`boi-conf.js`配置文件如下：
+
+```
+boi.use('boi-plugin-loader-vue');
+```
+
+boi本身不支持特定框架的编译，vue编译以及dev server配置由[boi-plugin-loader-vue](http://git.djcorp.cn/djfe/boi-plugin-loader-vue)插件提供。
+
+具体示例请参考[demo](http://git.djcorp.cn/djfe/boi-example/tree/master/app/suyun)。
+
+### 安装插件
+
+boi插件可以自行安装：
+
+```
+npm install boi-plugin-loader-vue --save-dev
+```
+
+由于某些不可言表的原因，npm可能会安装失败，请尝试以下解决方法：
+
+1.	挂VPN；
+2.	将npm仓库地址修改为taobao镜像：
+
+	```
+	npm config set registry https://registry.npm.taobao.org/
+	```
+
+3.	使用[cnpm](https://github.com/cnpm/cnpm)安装。
+
+如果用户不自行安装，boi会**自动**安装所使用的插件。
+
+> 推荐使用npm自行安装，cnpm安装目前存在一些不可预估的问题，后续会修复。
 

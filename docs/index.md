@@ -1,6 +1,3 @@
-boi-cli
-=======
-
 boi is short for bolshoi
 
 基于webpack的前端工程构建工具。
