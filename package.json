@@ -1,6 +1,6 @@
 {
   "name": "boi-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "cli tool for boi",
   "bin": {
     "boi": "bin/boi.js"
@@ -17,7 +17,7 @@
     "markdown-include": "^0.4.3"
   },
   "scripts": {
-      "build:docs": "node build/build.js"
+    "build:docs": "node build/build.js"
   },
   "repository": {
     "type": "git",
