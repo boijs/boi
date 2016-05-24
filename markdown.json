@@ -2,6 +2,6 @@
     "build": "README.md",
     "files" : ["./docs/index.md"],
 	"tableOfContents": {
-		"heading": "# Boi-cli"
+		"heading": "# Boi-cli\nboi is short for bolshoi\n\n基于webpack的前端工程构建工具。"
 	}
 }

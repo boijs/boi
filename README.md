@@ -1,4 +1,7 @@
 # Boi-cli
+boi is short for bolshoi
+
+基于webpack的前端工程构建工具。
 
   * [Get Start](#get-start)
     * [安装](#安装)
@@ -24,10 +27,6 @@
     * [使用插件](#使用插件)
     * [安装插件](#安装插件)
 
-
-boi is short for bolshoi
-
-基于webpack的前端工程构建工具。
 
 ## Get Start
 
