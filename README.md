@@ -53,7 +53,15 @@ boi.spec('js', {
 });
 ```
 
-在项目根目录下执行`boi build`
+在项目根目录下执行`boi build`。默认是dev环境的编译，会生成souremap文件以方便debug。
+
+生产环境的编译执行：
+
+```
+boi build prod
+```
+
+prod环境编译输出的文件不会产生souremap。
 
 ### 使用插件
 
