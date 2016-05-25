@@ -12,6 +12,10 @@ let ora = require('ora');
 let colors = require('colors');
 
 require('shelljs/global');
+
+let feature_info = require('./features/feature.info.js');
+let feature_init = require('./features/feature.init.js');
+
 // 引入boi-kernel模块
 let boi = require('boi-kernel');
 // local debug
@@ -23,6 +27,8 @@ Object.defineProperty(global, 'boi', {
     writable: false,
     value: boi
 });
+
+let info = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json'), 'utf-8'));
 
 let spinner = null;
 let confChanged = true;
@@ -36,16 +42,24 @@ let watchConfFile = function(confFile) {
     })
 };
 
-program.version('1.0.0');
+program.version(info.version);
+program.usage('<cmd> [option]');
+program.option('-v --version', 'output the version info');
 
-program.command('init [dir]')
-    .description('init')
+program.on("--help", function(){
+    feature_info(info.version);
+});
+
+// 创建一个新项目目录
+// dir是新项目目标路径
+program.command('new [dir]')
+    .description('create a new project')
     .action(function(dir) {
-        if (!dir || dir === '/') {
-            dir = './';
-        }
+        feature_init(dir)
     });
 
+// 编译项目文件
+// env为编译环境设置，默认dev
 program.command('build [env]')
     .description('build project files')
     .action(function(env) {
@@ -85,7 +99,8 @@ program.command('build [env]')
 
     });
 
-program.command('run server')
+// 运行本地dev server
+program.command('server')
     .description('run dev server')
     .action(function() {
         let _confFile = path.join(process.cwd(), '/boi-conf.js');
