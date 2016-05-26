@@ -46,7 +46,7 @@ program.version(info.version);
 program.usage('<cmd> [option]');
 program.option('-v --version', 'output the version info');
 
-program.on("--help", function(){
+program.on("--help", function() {
     feature_info(info.version);
 });
 
@@ -56,6 +56,11 @@ program.command('new [dir]')
     .description('create a new project')
     .action(function(dir) {
         feature_init(dir)
+    }).on('--help', function() {
+        console.log('  Examples:\n');
+        console.log('    $ boi new demo');
+        console.log('    $ boi new .');
+        console.log('    $ boi new ./\n');
     });
 
 // 编译项目文件
@@ -97,10 +102,16 @@ program.command('build [env]')
             });
         }
 
+    }).on('--help', function() {
+        console.log('  Examples:\n');
+        console.log('    $ boi build');
+        console.log('    $ boi build dev');
+        console.log('    $ boi build prod\n');
     });
 
 // 运行本地dev server
-program.command('server')
+program.command('serve')
+    .alias('run server')
     .description('run dev server')
     .action(function() {
         let _confFile = path.join(process.cwd(), '/boi-conf.js');
@@ -126,6 +137,10 @@ program.command('server')
             });
         }
 
+    }).on('--help', function() {
+        console.log('  Examples:\n');
+        console.log('    $ boi serve');
+        console.log('    $ boi run server\n');
     });
 
 program.parse(process.argv);
