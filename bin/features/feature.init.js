@@ -2,25 +2,97 @@
 
 let path = require('path');
 let Promise = require("bluebird");
-let prompt = require('prompt');
 let colors = require('colors');
+
+let inquirer = require('inquirer');
 
 require('shelljs/global');
 
 // 默认app name
 const DEFAULT_NAME = 'app';
 
-// prompt输入内容的验证规则
-let schema = {
-    properties: {
-        appName: {
-            type: 'string',
-            pattern: /^[a-zA-Z]+$/,
-            description: 'Give your app a nice name',
-            message: 'appName must be only letters',
-            required: false,
-            default: 'app'
+let prompt = inquirer.createPromptModule();
+
+let info = {
+    appname: DEFAULT_NAME,
+    modules: [],
+    boiPlugins: [],
+    thirdparty: []
+};
+
+let qs_appname = {
+    type: 'input',
+    name: 'appname',
+    message: 'Give your app a nice name',
+    default: 'app',
+    validate: function(input) {
+        // 命名规范，只能包含英文字母和.
+        let reg = /^[a-zA-Z\.]+$/;
+        if (reg.test(input)) {
+            return true;
+        } else {
+            console.log(colors.red('\nInvalid appname!'))
+            return false;
         }
+    }
+};
+
+let qs_projtype = {
+    type: 'list',
+    name: 'projtype',
+    message: 'Choose the type of your project',
+    choices: ['normal', 'vue-thirdparty', 'vue-inline'],
+    default: 0
+};
+
+let qs_vue = {
+    type: 'checkbox',
+    name: 'modules',
+    message: 'Which modules do you want',
+    choices: ['vue-router']
+};
+
+let qs_normal = {
+    type: 'checkbox',
+    name: 'modules',
+    message: 'Which modules do you want',
+    choices: ['vue', 'vue-router', 'zepto']
+};
+
+let qs_confirm = {
+    type: 'confirm',
+    name: 'confirm',
+    message: 'Ready to go?',
+    default: true
+};
+
+function execInit(options) {
+    // replace plugins
+    sed('-i', /BOIPLUGINS/g, options.boiPlugins.join('\n'), './boi-conf.js');
+    // replace inline appname
+    sed('-i', /APPNAME/g, options.appname, './src/js/main.app.js');
+    sed('-i', /APPNAME/g, options.appname, './src/views/index.app.html');
+    sed('-i', /APPNAME/g, options.appname, './boi-conf.js');
+
+    if(options.appname!==DEFAULT_NAME){
+        // replace appname in file name
+        cp('-f', './src/js/main.app.js', './src/js/main.' + options.appname + '.js');
+        cp('-f', './src/styles/main.app.scss', './src/styles/main.' + options.appname + '.scss');
+        cp('-f', './src/views/index.app.html', './src/views/index.' + options.appname + '.html');
+        // delete origin files
+        rm('-f', ['./src/js/main.app.js', './src/styles/main.app.scss', './src/views/index.app.html']);
+    }
+    // copy thirdparty
+    if(options.thirdparty&&options.thirdparty.length!==0){
+        mkdir('./libs/');
+        options.thirdparty.forEach(function(m){
+            cp('-f',path.join(__dirname, '../../static/thirdparty/',m),'./libs/'+m);
+        });
+    }
+    // install node modules
+    if(options.modules && options.modules.length!==0){
+        colors.blue('Install modules...');
+        exec('npm install ' + options.modules.join(' ') + ' --save-dev');
     }
 };
 
@@ -43,31 +115,42 @@ module.exports = function(dir) {
     cd(dir);
 
     // 将boi sample文件拷贝至新项目目录内
-    cp('-r', path.join(__dirname, '../../sample/*'), './');
+    cp('-r', path.join(__dirname, '../../static/sample/*'), './');
 
-    prompt.start();
-
-    // 提示用户输入一些项目必要信息
-    prompt.get(schema, function(err, result) {
-        if (err) {
-            throw err;
+    prompt(qs_appname).then(function(result) {
+        if(!!result.appname){
+            info = Object.assign({}, info, result);
         }
+        return prompt(qs_projtype);
+    }).then(function(result) {
+        info = Object.assign({}, info, result);
 
-        appName = result.appName;
-        prompt.stop();
-
-        // 若用户定制了app name，则将sample文件中的app name进行替换
-        if (appName !== DEFAULT_NAME) {
-            sed('-i', /app/g, appName, './src/js/main.app.js');
-            sed('-i', /app/g, appName, './src/views/index.app.html');
-            sed('-i', /app\b/g, appName, './boi-conf.js');
-
-            cp('-f', './src/js/main.app.js', './src/js/main.' + appName + '.js');
-            cp('-f', './src/styles/main.app.scss', './src/styles/main.' + appName + '.scss');
-            cp('-f', './src/views/index.app.html', './src/views/index.' + appName + '.html');
-
-            rm('-f', ['./src/js/main.app.js', './src/styles/main.app.scss', './src/views/index.app.html']);
+        if (/\bvue/.test(result.projtype)) {
+            if (result.projtype === 'vue-inline') {
+                info.modules.push('vue');
+            }else{
+                info.thirdparty.push('vue.min.js');
+            }
+            info.modules.push('boi-plugin-loader-vue');
+            info.boiPlugins.push('boi.use(\'boi-plugin-loader-vue\');');
+            return prompt(qs_vue);
+        } else {
+            return prompt(qs_normal);
         }
-        console.log(colors.blue('boi app ' + appName + 'has been created successfully!'));
+    }).then(function(result) {
+        if (result.modules && result.modules.length !== 0) {
+            info = Object.assign({}, info, {
+                modules: info.modules.concat(result.modules)
+            });
+        }
+        return prompt(qs_confirm);
+    }).then(function(result) {
+        if (result.confirm) {
+            execInit(info);
+        } else {
+            process.exit();
+        }
+    }).catch(function(err) {
+        throw err;
     });
 }

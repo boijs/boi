@@ -1,10 +1,12 @@
+BOIPLUGINS
 // 配置
 boi.spec('basic', {
     appName: 'app',
     // 本地编译目录
     localPath: {
         src: './src/',
-        dest: './dest/'
+        dest: './dest/',
+        thirdparty: '/libs/'
     },
     // cdn url
     cdn: {
