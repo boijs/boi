@@ -1,0 +1,12 @@
+{
+  "name": "APPNAME",
+  "version": "0.0.0",
+  "description": "APPNAME built on boi",
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "keywords": [
+    "boi"
+  ]
+}

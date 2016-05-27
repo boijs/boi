@@ -1,7 +1,7 @@
 BOIPLUGINS
 // 配置
 boi.spec('basic', {
-    appName: 'app',
+    appName: 'APPNAME',
     // 本地编译目录
     localPath: {
         src: './src/',
@@ -10,8 +10,8 @@ boi.spec('basic', {
     },
     // cdn url
     cdn: {
-        server: 'static.app.com',
-        path: '/app/'
+        server: 'static.APPNAME.com',
+        path: '/APPNAME/'
     }
 });
 
