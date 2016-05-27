@@ -15,6 +15,7 @@ let prompt = inquirer.createPromptModule();
 
 let info = {
     appname: DEFAULT_NAME,
+    projtype: '',
     modules: [],
     boiPlugins: [],
     thirdparty: []
@@ -66,31 +67,74 @@ let qs_confirm = {
     default: true
 };
 
-function execInit(options) {
-    // replace plugins
-    sed('-i', /BOIPLUGINS/g, options.boiPlugins.join('\n'), './boi-conf.js');
-    // replace inline appname
-    sed('-i', /APPNAME/g, options.appname, './src/js/main.app.js');
-    sed('-i', /APPNAME/g, options.appname, './src/views/index.app.html');
-    sed('-i', /APPNAME/g, options.appname, './boi-conf.js');
-
-    if(options.appname!==DEFAULT_NAME){
-        // replace appname in file name
-        cp('-f', './src/js/main.app.js', './src/js/main.' + options.appname + '.js');
-        cp('-f', './src/styles/main.app.scss', './src/styles/main.' + options.appname + '.scss');
-        cp('-f', './src/views/index.app.html', './src/views/index.' + options.appname + '.html');
-        // delete origin files
-        rm('-f', ['./src/js/main.app.js', './src/styles/main.app.scss', './src/views/index.app.html']);
+function formatModuleName(name){
+    let result = '';
+    if(name.indexOf('-')!==-1){
+        result= name.split('-').join('');
     }
+
+    return result;
+}
+
+
+function execInit(options) {
+    // vue项目目录结构不包含style文件夹
+    if (/vue/.test(options.projtype)) {
+        // 将boi sample文件拷贝至新项目目录内
+        cp('-r', path.join(__dirname, '../../static/sample/vue/*'), './');
+
+        // replace plugins
+        sed('-i', /\/\*BOIPLUGINS\*\//g, options.boiPlugins.join('\n'), './boi-conf.js');
+        // replace inline appname
+        sed('-i', /APPNAME/g, options.appname, './src/js/main.app.js');
+        sed('-i', /APPNAME/g, options.appname, './src/views/index.app.html');
+        sed('-i', /APPNAME/g, options.appname, './boi-conf.js');
+
+        if (options.appname !== DEFAULT_NAME) {
+            // replace appname in file name
+            cp('-f', './src/js/main.app.js', './src/js/main.' + options.appname + '.js');
+            cp('-f', './src/views/index.app.html', './src/views/index.' + options.appname + '.html');
+            // delete origin files
+            rm('-f', ['./src/js/main.app.js', './src/styles/main.app.scss', './src/views/index.app.html']);
+        }
+    } else {
+        // 将boi sample文件拷贝至新项目目录内
+        cp('-r', path.join(__dirname, '../../static/sample/normal/*'), './');
+
+        // replace plugins
+        sed('-i', /\/\*\s*BOIPLUGINS\s*\*\//g, options.boiPlugins.join('\n'), './boi-conf.js');
+        // replace inline appname
+        sed('-i', /APPNAME/g, options.appname, './src/js/main.app.js');
+        sed('-i', /APPNAME/g, options.appname, './src/views/index.app.html');
+        sed('-i', /APPNAME/g, options.appname, './boi-conf.js');
+
+        if (options.appname !== DEFAULT_NAME) {
+            // replace appname in file name
+            cp('-f', './src/js/main.app.js', './src/js/main.' + options.appname + '.js');
+            cp('-f', './src/styles/main.app.scss', './src/styles/main.' + options.appname + '.scss');
+            cp('-f', './src/views/index.app.html', './src/views/index.' + options.appname + '.html');
+            // delete origin files
+            rm('-f', ['./src/js/main.app.js', './src/styles/main.app.scss', './src/views/index.app.html']);
+        }
+    }
+
     // copy thirdparty
-    if(options.thirdparty&&options.thirdparty.length!==0){
+    if (options.thirdparty && options.thirdparty.length !== 0) {
         mkdir('./libs/');
-        options.thirdparty.forEach(function(m){
-            cp('-f',path.join(__dirname, '../../static/thirdparty/',m),'./libs/'+m);
+        let _thirdparies = [];
+        options.thirdparty.forEach(function(m) {
+            cp('-f', path.join(__dirname, '../../static/thirdparty/', m), './libs/' + m);
+            _thirdparies.push('<script src=\'/libs/' + m + '\'></script>');
         });
+        sed('-i', /\<!--\s*thirdparty\s*--\>$/g, _thirdparies.join('\n'), './src/views/index.' + options.appname + '.html');
     }
     // install node modules
-    if(options.modules && options.modules.length!==0){
+    if (options.modules && options.modules.length !== 0) {
+        let _modules = options.modules.map(function(m) {
+            return 'import ' + formatModuleName(m) + ' from \'' + m + '\';'
+        }).join('\n');
+        // inject modules to main js file
+        sed('-i', /\/\*\s*MODULES\s*\*\//g, _modules, './src/js/main.' + options.appname + '.js');
         colors.blue('Install modules...');
         exec('npm install ' + options.modules.join(' ') + ' --save-dev');
     }
@@ -109,16 +153,13 @@ module.exports = function(dir) {
     if (_dir !== './') {
         // 创建项目根目录
         mkdir(_dir);
+        // 进入项目根目录
+        cd(_dir);
     }
 
-    // 进入项目根目录
-    cd(dir);
-
-    // 将boi sample文件拷贝至新项目目录内
-    cp('-r', path.join(__dirname, '../../static/sample/*'), './');
 
     prompt(qs_appname).then(function(result) {
-        if(!!result.appname){
+        if (!!result.appname) {
             info = Object.assign({}, info, result);
         }
         return prompt(qs_projtype);
@@ -128,10 +169,10 @@ module.exports = function(dir) {
         if (/\bvue/.test(result.projtype)) {
             if (result.projtype === 'vue-inline') {
                 info.modules.push('vue');
-            }else{
+            } else {
                 info.thirdparty.push('vue.min.js');
             }
-            info.modules.push('boi-plugin-loader-vue');
+            // info.modules.push('boi-plugin-loader-vue');
             info.boiPlugins.push('boi.use(\'boi-plugin-loader-vue\');');
             return prompt(qs_vue);
         } else {
