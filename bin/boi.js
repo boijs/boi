@@ -111,7 +111,6 @@ program.command('build [env]')
 
 // 运行本地dev server
 program.command('serve')
-    .alias('run server')
     .description('run dev server')
     .action(function() {
         let _confFile = path.join(process.cwd(), '/boi-conf.js');
