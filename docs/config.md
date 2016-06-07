@@ -4,15 +4,22 @@ boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 
 目前v1.0.0支持的可配置项有：
 
+`spec`配置项是编译项目的配置，包括以下几种：
 -	`basic`：`Object`，基础配置；
 -	`js`：`Object`，JS文件的编译配置项；
 -	`style`：`Object`，style文件的编译配置项；
 -	`html`：`Object`，html模板文件的编译配置项；
 -	`image`：`Object`，图片文件的编译配置项。
 
+`serve`配置项是dev server的配置，包括以下几种：
+* `port`：`String`，修改默认监听端口；
+* `domain`：`String`，修改默认监听域名
+
 > 目前版本支持的配置项较少，以满足本公司需求为主，后续版本会扩充可配置模块。
 
-### basic !heading
+### spec配置项 !heading
+
+#### basic !heading
 
 -	`appName`：`String`，项目名称，默认值为`app`；
 -	`localPath`: `Object`，本地目录配置；
@@ -23,7 +30,7 @@ boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 	1.	`server`：`String`，cdn域名；
 	2.	`path`：`String`，项目在cdn服务器的路径。 -
 
-### js !heading
+#### js !heading
 
 -	`extType`：`String`，扩展名，默认值为js；
 -	`srcType`：`Array`，源文件的转译配置，默认值为`['es2015']`；
@@ -55,14 +62,14 @@ boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 	3.	`postLoader`：`Object`；
 	4.	`plugins`：`Array`。
 
-### style !heading
+#### style !heading
 
 style配置项与JS大体相同，有以下区别：
 
 -	没有`uglify`、`srcType`、`mutiEntriesVendor`和`files`配置项；
 -	`extType`决定css预编译器的选型。
 
-### html !heading
+#### html !heading
 
 html配置项与JS大体相同，有以下区别：
 
@@ -70,7 +77,7 @@ html配置项与JS大体相同，有以下区别：
 -	`files`: `Array`，index文件的列表，仍需遵循命名规范；
 -	`mainFilePrefix`：默认值为`'index'`。
 
-### image !heading
+#### image !heading
 
 -	`extType`：`Array`，图片文件扩展名列表；
 -	`destDir`：`String`，编译输出目录，`basic.localPath.dest`；
@@ -101,3 +108,8 @@ html配置项与JS大体相同，有以下区别：
 	    backgournd:url(http://img.daojia.com/icons.b709986b.png)
 	}
 	```
+
+### serve配置项 !heading
+
+* `port`：`String`，修改默认监听端口；
+* `domain`：`String`，修改默认监听域名

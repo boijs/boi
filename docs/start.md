@@ -6,6 +6,44 @@
 npm install boi-cli -g
 ```
 
+### 创建boi项目 !heading
+
+boi安装成功后，在工作目录内运行：
+
+```
+boi new boi-demo
+```
+
+或者在已存在目录下运行：
+
+```
+boi new .
+```
+
+命令行将依次有以下提示：
+
+![](assets/new-1.png)
+
+自定义项目名称，默认项目名称为app。
+
+![](assets/new-2.png)
+
+选择项目类型，上图中依次为常规项目、vue作为第三方库单独引入的项目和vue参与webpack打包的项目。
+
+![](assets/new-3.png)
+
+选择npm第三方依赖。
+
+![](assets/new-4.png)
+
+最终确认。
+
+![](assets/new-5.png)
+
+配置完毕后，boi会自动安装npm第三方依赖。全部执行成功后，生成的项目目录如下图：
+
+![](assets/new-6.png)
+
 ### 编译项目文件 !heading
 
 1.	在项目根目录下创建文件`boi-conf.js`;

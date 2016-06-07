@@ -14,7 +14,8 @@ let colors = require('colors');
 require('shelljs/global');
 
 let feature_info = require('./features/feature.info.js');
-let feature_init = require('./features/feature.init.js');
+let feature_new = require('./features/feature.new.js');
+let feature_deploy = require('./features/feature.deploy.js');
 
 // 引入boi-kernel模块
 let boi = require('boi-kernel');
@@ -55,7 +56,7 @@ program.on("--help", function() {
 program.command('new [dir]')
     .description('create a new project')
     .action(function(dir) {
-        feature_init(dir)
+        feature_new(dir)
     }).on('--help', function() {
         console.log('  Examples:\n');
         console.log('    $ boi new demo');
@@ -140,6 +141,15 @@ program.command('serve')
         console.log('  Examples:\n');
         console.log('    $ boi serve');
         console.log('    $ boi run server\n');
+    });
+
+program.command('deploy')
+    .description('Deploy project files')
+    .action(function() {
+        feature_deploy();
+    }).on('--help', function() {
+        console.log('  Examples:\n');
+        console.log('    $ boi deploy');
     });
 
 program.parse(process.argv);

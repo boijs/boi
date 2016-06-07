@@ -3,8 +3,11 @@ boi is short for bolshoi
 
 基于webpack的前端工程构建工具。
 
+![](assets/logo.png)
+
   * [Get Start](#get-start)
     * [安装](#安装)
+    * [创建boi项目](#创建boi项目)
     * [编译项目文件](#编译项目文件)
     * [使用插件](#使用插件)
     * [dev server](#dev-server)
@@ -18,11 +21,13 @@ boi is short for bolshoi
       * [资源引用规范](#资源引用规范)
       * [模块化开发规范](#模块化开发规范)
   * [配置API](#配置api)
-    * [basic](#basic)
-    * [js](#js)
-    * [style](#style)
-    * [html](#html)
-    * [image](#image)
+    * [spec配置项](#spec配置项)
+      * [basic](#basic)
+      * [js](#js)
+      * [style](#style)
+      * [html](#html)
+      * [image](#image)
+    * [serve配置项](#serve配置项)
   * [插件](#插件)
     * [使用插件](#使用插件)
     * [安装插件](#安装插件)
@@ -35,6 +40,44 @@ boi is short for bolshoi
 ```
 npm install boi-cli -g
 ```
+
+### 创建boi项目
+
+boi安装成功后，在工作目录内运行：
+
+```
+boi new boi-demo
+```
+
+或者在已存在目录下运行：
+
+```
+boi new .
+```
+
+命令行将依次有以下提示：
+
+![](assets/new-1.png)
+
+自定义项目名称，默认项目名称为app。
+
+![](assets/new-2.png)
+
+选择项目类型，上图中依次为常规项目、vue作为第三方库单独引入的项目和vue参与webpack打包的项目。
+
+![](assets/new-3.png)
+
+选择npm第三方依赖。
+
+![](assets/new-4.png)
+
+最终确认。
+
+![](assets/new-5.png)
+
+配置完毕后，boi会自动安装npm第三方依赖。全部执行成功后，生成的项目目录如下图：
+
+![](assets/new-6.png)
 
 ### 编译项目文件
 
@@ -88,7 +131,7 @@ boi会判断用户是否已安装此插件，如果没有，则boi会自动安�
 项目根目录下执行：
 
 ```
-boi run server
+boi serve
 ```
 
 执行成功后访问`localhost:8888/views/*.html`(html文件根据具体命名改动)。boi支持动态编译，开发过程中不必多次重启dev server。
@@ -236,15 +279,22 @@ boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 
 目前v1.0.0支持的可配置项有：
 
+`spec`配置项是编译项目的配置，包括以下几种：
 -	`basic`：`Object`，基础配置；
 -	`js`：`Object`，JS文件的编译配置项；
 -	`style`：`Object`，style文件的编译配置项；
 -	`html`：`Object`，html模板文件的编译配置项；
 -	`image`：`Object`，图片文件的编译配置项。
 
+`serve`配置项是dev server的配置，包括以下几种：
+* `port`：`String`，修改默认监听端口；
+* `domain`：`String`，修改默认监听域名
+
 > 目前版本支持的配置项较少，以满足本公司需求为主，后续版本会扩充可配置模块。
 
-### basic
+### spec配置项
+
+#### basic
 
 -	`appName`：`String`，项目名称，默认值为`app`；
 -	`localPath`: `Object`，本地目录配置；
@@ -255,7 +305,7 @@ boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 	1.	`server`：`String`，cdn域名；
 	2.	`path`：`String`，项目在cdn服务器的路径。 -
 
-### js
+#### js
 
 -	`extType`：`String`，扩展名，默认值为js；
 -	`srcType`：`Array`，源文件的转译配置，默认值为`['es2015']`；
@@ -287,14 +337,14 @@ boi配置文件位于项目根目录，文件名为`boi-conf.js`。
 	3.	`postLoader`：`Object`；
 	4.	`plugins`：`Array`。
 
-### style
+#### style
 
 style配置项与JS大体相同，有以下区别：
 
 -	没有`uglify`、`srcType`、`mutiEntriesVendor`和`files`配置项；
 -	`extType`决定css预编译器的选型。
 
-### html
+#### html
 
 html配置项与JS大体相同，有以下区别：
 
@@ -302,7 +352,7 @@ html配置项与JS大体相同，有以下区别：
 -	`files`: `Array`，index文件的列表，仍需遵循命名规范；
 -	`mainFilePrefix`：默认值为`'index'`。
 
-### image
+#### image
 
 -	`extType`：`Array`，图片文件扩展名列表；
 -	`destDir`：`String`，编译输出目录，`basic.localPath.dest`；
@@ -333,6 +383,11 @@ html配置项与JS大体相同，有以下区别：
 	    backgournd:url(http://img.daojia.com/icons.b709986b.png)
 	}
 	```
+
+### serve配置项
+
+* `port`：`String`，修改默认监听端口；
+* `domain`：`String`，修改默认监听域名
 
 
 ## 插件
