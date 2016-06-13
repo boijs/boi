@@ -28,7 +28,7 @@ let qs_appname = {
     default: 'app',
     validate: function(input) {
         // 命名规范，只能包含英文字母和.
-        let reg = /^[a-zA-Z\.]+$/;
+        let reg = /^[\w\.-]+$/;
         if (reg.test(input)) {
             return true;
         } else {
