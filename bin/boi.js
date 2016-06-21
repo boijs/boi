@@ -91,6 +91,7 @@ program.command('build [env]')
             }).catch(function(err) {
                 spinner.stop();
                 throw new Error(err);
+                process.exit();
             });
         } else {
             Promise.try(function() {
@@ -100,6 +101,7 @@ program.command('build [env]')
             }).catch(function(err) {
                 spinner.stop();
                 throw new Error(err);
+                process.exit();
             });
         }
 
@@ -128,15 +130,16 @@ program.command('serve')
                 boi.runDevServer(env);
             }).catch(function(err) {
                 throw new Error(err);
+                process.exit();
             });
         } else {
             Promise.try(function() {
                 boi.runDevServer(env);
             }).catch(function(err) {
                 throw new Error(err);
+                process.exit();
             });
         }
-
     }).on('--help', function() {
         console.log('  Examples:\n');
         console.log('    $ boi serve');

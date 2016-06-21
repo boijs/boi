@@ -86,6 +86,7 @@ function execInit(options) {
         // replace plugins
         sed('-i', /\/\*BOIPLUGINS\*\//g, options.boiPlugins.join('\n'), './boi-conf.js');
         // replace inline appname
+        sed('-i', /APPNAME/g, options.appname, './package.json');
         sed('-i', /APPNAME/g, options.appname, './src/js/main.app.js');
         sed('-i', /APPNAME/g, options.appname, './src/views/index.app.html');
         sed('-i', /APPNAME/g, options.appname, './boi-conf.js');
@@ -104,6 +105,7 @@ function execInit(options) {
         // replace plugins
         sed('-i', /\/\*\s*BOIPLUGINS\s*\*\//g, options.boiPlugins.join('\n'), './boi-conf.js');
         // replace inline appname
+        sed('-i', /APPNAME/g, options.appname, './package.json');
         sed('-i', /APPNAME/g, options.appname, './src/js/main.app.js');
         sed('-i', /APPNAME/g, options.appname, './src/views/index.app.html');
         sed('-i', /APPNAME/g, options.appname, './boi-conf.js');

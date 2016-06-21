@@ -1,4 +1,4 @@
-BOIPLUGINS
+/*BOIPLUGINS*/
 // 配置
 boi.spec('basic', {
     appName: 'APPNAME',
