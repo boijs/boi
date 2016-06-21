@@ -99,4 +99,4 @@ boi会判断用户是否已安装此插件，如果没有，则boi会自动安�
 boi serve
 ```
 
-执行成功后访问`localhost:8888/views/*.html`(html文件根据具体命名改动)。boi支持动态编译，开发过程中不必多次重启dev server。
+执行成功后访问`localhost:8888/*.html`或者`localhost:8888/views/*.html`(html文件根据具体命名改动)。boi支持动态编译，开发过程中不必多次重启dev server。
