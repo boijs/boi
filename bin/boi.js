@@ -56,7 +56,7 @@ program.on("--help", function() {
 program.command('new [dir]')
     .description('create a new project')
     .action(function(dir) {
-        feature_new(dir)
+        feature_new(dir);
     }).on('--help', function() {
         console.log('  Examples:\n');
         console.log('    $ boi new demo');
