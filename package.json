@@ -1,6 +1,6 @@
 {
   "name": "boi-cli",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "cli tool for boi",
   "bin": {
     "boi": "bin/boi.js"
