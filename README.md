@@ -88,9 +88,6 @@ boi new .
 boi.spec('js', {
     extType: 'js',
     srcType: ['es2015'],
-    files: {
-        vendor: ['vue']
-    },
     srcDir: 'js',
     destDir: 'js'
 });
