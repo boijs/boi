@@ -6,7 +6,7 @@ boi.spec('basic', {
     localPath: {
         src: './src/',
         dest: './dest/',
-        thirdparty: '/libs/'
+        thirdparty: './libs/'
     },
     // cdn url
     cdn: {
