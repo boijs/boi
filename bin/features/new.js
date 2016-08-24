@@ -2,8 +2,8 @@
 
 let path = require('path');
 let Promise = require("bluebird");
-let colors = require('colors');
-
+let chalk = require('chalk');
+let _ = require('lodash');
 let inquirer = require('inquirer');
 
 require('shelljs/global');
@@ -32,7 +32,7 @@ let qs_appname = {
         if (reg.test(input)) {
             return true;
         } else {
-            console.log(colors.red('\nInvalid appname!'))
+            console.log(chalk.red('\nInvalid appname!'))
             return false;
         }
     }
@@ -67,10 +67,12 @@ let qs_confirm = {
     default: true
 };
 
-function formatModuleName(name){
+function formatModuleName(name) {
     let result = '';
-    if(name.indexOf('-')!==-1){
-        result= name.split('-').join('');
+    if (name.indexOf('-') !== -1) {
+        result = _.camelCase(name);
+    } else {
+        result = _.capitalize(name);
     }
 
     return result;
@@ -137,7 +139,7 @@ function execInit(options) {
         }).join('\n');
         // inject modules to main js file
         sed('-i', /\/\*\s*MODULES\s*\*\//g, _modules, './src/js/main.' + options.appname + '.js');
-        colors.blue('Install modules...');
+        chalk.blue('Install modules...');
         exec('npm install ' + options.modules.join(' ') + ' --save-dev');
     }
 };
