@@ -1,7 +1,7 @@
 {
   "name": "boi",
   "version": "1.2.4",
-  "description": "cli tool for boi",
+  "description": "前端工程化集成解决方案",
   "bin": {
     "boi": "bin/boi.js"
   },
@@ -13,24 +13,18 @@
     "inquirer": "^1.0.2",
     "shelljs": "^0.7.0"
   },
-  "devDependencies": {
-    "markdown-include": "^0.4.3"
-  },
-  "scripts": {
-    "build:docs": "node build/build.js"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ihardcoder/bolshoi-cli.git"
+    "url": "git+https://github.com/boijs/boi"
   },
   "keywords": [
     "boi",
-    "cli"
+    "webpack"
   ],
   "author": "zhoujunpeng",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ihardcoder/bolshoi-cli/issues"
+    "url": "https://github.com/boijs/boi/issues"
   },
-  "homepage": "https://github.com/ihardcoder/bolshoi-cli#readme"
+  "homepage": "https://boijs.github.io/"
 }
