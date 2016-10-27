@@ -1,6 +1,6 @@
 {
   "name": "boi",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "前端工程化集成解决方案",
   "bin": {
     "boi": "bin/boi.js"
