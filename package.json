@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "bluebird": "^3.3.5",
-    "boi-kernel": "^1.2.6",
+    "boi-kernel": "^1.2.7",
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
     "inquirer": "^1.0.2",
