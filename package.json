@@ -22,7 +22,7 @@
     "webpack"
   ],
   "author": "zhoujunpeng",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/boijs/boi/issues"
   },
