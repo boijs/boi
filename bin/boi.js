@@ -27,12 +27,13 @@ program.on("--help", function() {
 
 program.command('new [dir]')
     .description('create a new project')
-    .action(function(dir) {
-        require('./features/new.js')(dir);
+    .option('-t --template [template]','specify template application')
+    .action(function(dir,options) {
+        require('./features/generator.js')(dir,options.template);
     }).on('--help', function() {
         console.log('  Examples:\n');
-        console.log('    $ boi new demo');
-        console.log('    $ boi new .');
+        console.log('    $ boi new demo -t webapp');
+        console.log('    $ boi new . -t webapp');
     });
 
 program.command('build [env]')
