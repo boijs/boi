@@ -2,21 +2,21 @@
 
 require('shelljs/global');
 
-const Path = require('path');
+const _      = require('lodash');
+const Path   = require('path');
+const Ora    = require('ora');
+const Chalk  = require('Chalk');
 const Yeoman = require('yeoman-environment');
-const _ = require('lodash');
-const Chalk = require('Chalk');
-const Ora = require('ora');
 
 let env = Yeoman.createEnv();
 
 module.exports = (dirname, template) => {
-  let appname = '';
+  let appname      = '';
   let inCurrentDir = false;
   // 不指定templateName使用默认的boiapp模板
   let templateName = template && template.split(/\:/)[0] || 'boiapp';
-  let generator = 'generator-' + templateName;
-  let appCommand = template || templateName;
+  let generator    = 'generator-' + templateName;
+  let appCommand   = template || templateName;
 
   if (!dirname || dirname === '.' || dirname === './') {
     // 如果不指定appname则取值当前目录名称

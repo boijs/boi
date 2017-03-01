@@ -15,7 +15,7 @@ module.exports = function() {
   }).then(function() {
     boi.resolvePlugins();
   }).then(function() {
-    boi.runDevServer();
+    boi.runServe();
   }).catch(function(err) {
     console.log(chalk.red(err.stack));
     process.exit();

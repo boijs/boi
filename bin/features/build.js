@@ -8,7 +8,6 @@ let chalk = require('chalk');
 const ENV = require('../constants').env;
 
 module.exports = function(env) {
-    console.log(chalk.cyan.bold("==> Building..."));
     process.env.BOI_ENV = env || ENV.testing;
     Promise.try(function() {
         require(path.join(process.cwd(), '/boi-conf.js'));
