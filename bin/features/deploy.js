@@ -13,7 +13,7 @@ module.exports = function(env) {
   Promise.try(function() {
     require(path.join(process.cwd(), '/boi-conf.js'));
   }).then(function() {
-    boi.deploy();
+    boi.runDeploy();
   }).catch(function(err) {
     console.log(chalk.red(err.stack));
     process.exit();
