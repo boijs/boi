@@ -1,23 +1,21 @@
 'use strict';
 
-let fs = require("fs");
-let path = require('path');
-let Promise = require("bluebird");
-let chalk = require('chalk');
+const Path = require('path');
+const Promise = require('bluebird');
 
 const ENV = require('../constants/index.js').env;
 
-module.exports = function() {
+module.exports = function () {
   // dev server设置为development环境
   process.env.BOI_ENV = ENV.development;
-  Promise.try(function() {
-    require(path.join(process.cwd(), '/boi-conf.js'));
-  }).then(function() {
+  Promise.try(function () {
+    require(Path.join(process.cwd(), '/boi-conf.js'));
+  }).then(function () {
+    /* eslint-disable */
     boi.resolvePlugins();
-  }).then(function() {
+  }).then(function () {
     boi.runServe();
-  }).catch(function(err) {
-    console.log(chalk.red(err.stack));
-    process.exit();
+  }).catch(function (err) {
+    throw err;
   });
 };
