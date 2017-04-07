@@ -1,26 +1,41 @@
 'use strict';
 
-let fs = require('fs');
-let path = require('path');
-let chalk = require('chalk');
-let info = JSON.parse(fs.readFileSync(path.join(__dirname, '../../package.json'), 'utf-8'));
+const Fs = require('fs');
+const Path = require('path');
+const Chalk = require('chalk');
+const Info = JSON.parse(Fs.readFileSync(Path.join(__dirname, '../../package.json'), 'utf-8'));
 /* eslint-disable */
-module.exports = function(){
-    let  content = [
-        '',
-        '  v' + info.version,
-        '',
-        '   ' + chalk.blue.bold(' \/\\\\\\') + '                                        '+chalk.blue.bold('\/\\\\\\'),
-        '    ' + chalk.blue.bold('\\\/\\\\\\') + '                                       '+chalk.blue.bold('\\\///'),
-        '     ' + chalk.blue.bold('\\\/\\\\\\') + '                                                 ',
-        '      ' + chalk.blue.bold('\\\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\') + '      ' + chalk.blue.bold('\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\') + '      ' + chalk.blue.bold('\/\\\\\\'),
-        '       ' + chalk.blue.bold('\\\/\\\\\\/////////\\\\\\') + '     ' + chalk.blue.bold('\\\/\\\\\\/////////\\\\\\') + '     ' + chalk.blue.bold('\\\/\\\\\\'),
-        '        ' + chalk.blue.bold('\\\/\\\\\\\       \\\/\\\\\\') + '     ' + chalk.blue.bold('\\\/\\\\\\\       \\\/\\\\\\') + '     ' + chalk.blue.bold('\\\/\\\\\\'),
-        '         ' + chalk.blue.bold('\\\/\\\\\\\       \\\/\\\\\\') + '     ' + chalk.blue.bold('\\\/\\\\\\\       \\\/\\\\\\') + '     ' + chalk.blue.bold('\\\/\\\\\\'),
-        '          ' + chalk.blue.bold('\\\/\\\\\\\       \\\/\\\\\\') + '     ' + chalk.blue.bold('\\\/\\\\\\\       \\\/\\\\\\') + '     ' + chalk.blue.bold('\\\/\\\\\\'),
-        '           ' + chalk.blue.bold('\\\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\') + '     ' + chalk.blue.bold('\\\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\') + '     ' + chalk.blue.bold('\\\/\\\\\\'),
-        '            ' + chalk.blue.bold('\\\///////////////') + '      ' + chalk.blue.bold('\\\///////////////') + '      ' + chalk.blue.bold('\\\///'),
+module.exports = function () {
+  //
+  //
+  //
+  //    ,---,               ,--,
+  //  ,---.'|      ,---.  ,--.'|
+  //  |   | :     '   ,'\ |  |,
+  //  :   : :    /   /   |`--'_
+  //  :     |,-..   ; ,. :,' ,'|
+  //  |   : '  |'   | |: :'  | |
+  //  |   |  / :'   | .; :|  | :
+  //  '   : |: ||   :    |'  : |__
+  //  |   | '/ : \   \  / |  | '.'|
+  //  |   :    |  `----'  ;  :    ;
+  //  /    \  /           |  ,   /
+  //  `-'----'             ---`-'
+  //
 
-    ].join('\n');
-    console.log( content);
+  let content = ` v${Info.version}\n` + Chalk.cyan.bold([
+    '    ,---,               ,--,    ',
+    '  ,---.\'|      ,---.  ,--.\'|    ',
+    '  |   | :     \'   ,\'\\ |  |,     ',
+    '  :   : :    /   /   |`--\'_     ',
+    '  :     |,-..   ; ,. :,\' ,\'|    ',
+    '  |   : \'  |\'   | |: :\'  | |    ',
+    '  |   |  / :\'   | .; :|  | :    ',
+    '  \'   : |: ||   :    |\'  : |__  ',
+    '  |   | \'/ : \\   \\  / |  | \'.\'| ',
+    '  |   :    |  `----\'  ;  :    ; ',
+    '  /    \\  /           |  ,   /  ',
+    '  `-\'----\'             ---`-\'   '
+    ].join('\n'));
+  console.log(content);
 }
