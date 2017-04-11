@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "bluebird": "^3.3.5",
-    "boi-kernel": "^1.3.8",
+    "boi-kernel": "^1.3.9",
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
     "ora": "^1.1.0",
