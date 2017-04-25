@@ -28,7 +28,7 @@ module.exports = (dirname, template) => {
     appname = dirname;
   }
   /* eslint-disable */
-  let npmRoot = exec('npm root -g', {
+  exec('npm root -g', {
     async: true,
     silent: true
   }, (code, stdout) => {
