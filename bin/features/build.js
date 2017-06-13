@@ -3,20 +3,19 @@
 const Path = require('path');
 const Promise = require('bluebird');
 const Chalk = require('chalk');
-
 const ENV = require('../constants').env;
 
 module.exports = function (env) {
   process.env.BOI_ENV = env || ENV.testing;
-  Promise.try(function () {
+  Promise.try(() => {
     require(Path.join(process.cwd(), '/boi-conf.js'));
-  }).then(function () {
+  }).then(() => {
     /* eslint-disable */
     boi.resolvePlugins();
-  }).then(function () {
+  }).then(() => {
     boi.runBuild();
-  }).catch(function (err) {
-    console.log(Chalk.red(err.stack));
-    process.exit(0);
+  }).catch(err => {
+    throw err;
+    process.exit();
   });
 };

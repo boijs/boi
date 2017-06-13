@@ -27,7 +27,8 @@ Program.on('--help', function () {
 
 Program.command('new [dir]')
   .description('create a new project')
-  .option('-t --template [template]', 'specify template application')
+  .usage('[dir] --template <template>')
+  .option('-t, --template [template]', 'specify template application')
   .action(function (dir, options) {
     require('./features/generator.js')(dir, options.template);
   }).on('--help', function () {
@@ -38,16 +39,18 @@ Program.command('new [dir]')
     /* eslint-enable */
   });
 
-Program.command('build [env]')
+Program.command('build')
   .description('build project files')
-  .action(function (env) {
-    require('./features/build.js')(env);
+  .usage('--env <env>')
+  .option('-e, --env [env]','specify build environment')
+  .action(function (options) {
+    require('./features/build.js')(options.env);
   }).on('--help', function () {
     /* eslint-disable */
     console.log('  Examples:\n');
     console.log('    $ boi build');
-    console.log('    $ boi build dev');
-    console.log('    $ boi build prod\n');
+    console.log('    $ boi build --env testing');
+    console.log('    $ boi build --env prod\n');
     /* eslint-enable */
   });
 
@@ -62,14 +65,17 @@ Program.command('serve')
     /* eslint-enable */
   });
 
-Program.command('deploy [env]')
+Program.command('deploy')
   .description('deploy to remote server')
-  .action(function (env) {
-    require('./features/deploy.js')(env);
+  .usage('--env <env>')
+  .option('-e --env [env]','specify build environment')
+  .action(function (options) {
+    require('./features/deploy.js')(options.env);
   }).on('--help', function () {
     /* eslint-disable */
     console.log('  Examples:\n');
-    console.log('    $ boi deploy');
+    console.log('    $ boi deploy --env testing');
+    console.log('    $ boi deploy --env prod');
     /* eslint-enable */
   });
 

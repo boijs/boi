@@ -2,20 +2,19 @@
 
 const Path = require('path');
 const Promise = require('bluebird');
-
 const ENV = require('../constants/index.js').env;
 
 module.exports = function () {
   // dev server设置为development环境
   process.env.BOI_ENV = ENV.development;
-  Promise.try(function () {
+  Promise.try(() => {
     require(Path.join(process.cwd(), '/boi-conf.js'));
-  }).then(function () {
+  }).then(() => {
     /* eslint-disable */
     boi.resolvePlugins();
-  }).then(function () {
+  }).then(() => {
     boi.runServe();
-  }).catch(function (err) {
+  }).catch(err => {
     throw err;
   });
 };

@@ -7,15 +7,15 @@ const Path = require('path');
 const Ora = require('ora');
 const Yeoman = require('yeoman-environment');
 
-let env = Yeoman.createEnv();
+const YeomanRuntime = Yeoman.createEnv();
 
 module.exports = (dirname, template) => {
   let appname = '';
   let inCurrentDir = false;
-  // 不指定templateName使用默认的boiapp模板
-  let templateName = template && template.split(/\:/)[0] || 'boiapp';
-  let generator = 'generator-' + templateName;
-  let appCommand = template || templateName;
+  // 不指定TemplateName使用默认的boiapp模板
+  const TemplateName = template && template.split(/\:/)[0] || 'boiapp';
+  let generator = `generator-${TemplateName}`;
+  let appCommand = template || TemplateName;
 
   if (!dirname || dirname === '.' || dirname === './') {
     // 如果不指定appname则取值当前目录名称
@@ -33,13 +33,12 @@ module.exports = (dirname, template) => {
     silent: true
   }, (code, stdout) => {
     /* eslint-enable */
-    let npmRoot = _.trim(stdout);
-    let generatorPath = Path.posix.join(npmRoot, generator);
+    const GeneratorPath = Path.posix.join(_.trim(stdout), generator);
 
     try {
-      require.resolve(generatorPath);
-      env.register(require.resolve(generatorPath), appCommand);
-      inCurrentDir ? env.run(appCommand + ' ' + appname + ' -c') : env.run(appCommand +
+      require.resolve(GeneratorPath);
+      YeomanRuntime.register(require.resolve(GeneratorPath), appCommand);
+      inCurrentDir ? YeomanRuntime.run(appCommand + ' ' + appname + ' -c') : YeomanRuntime.run(appCommand +
         ' ' + appname);
     } catch (e) {
       let spinner = Ora(`Installing ${generator}...`);
@@ -55,8 +54,8 @@ module.exports = (dirname, template) => {
           process.exit();
         }
         spinner.succeed(`${generator} has been installed successfully.`);
-        env.register(require.resolve(generatorPath), appCommand);
-        inCurrentDir ? env.run(`${appCommand} ${appname} -c`) : env.run(`${appCommand} ${appname}`);
+        YeomanRuntime.register(require.resolve(GeneratorPath), appCommand);
+        inCurrentDir ? YeomanRuntime.run(`${appCommand} ${appname} -c`) : YeomanRuntime.run(`${appCommand} ${appname}`);
       });
     }
   });
