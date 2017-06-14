@@ -1,6 +1,6 @@
 {
   "name": "boi",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "前端工程集成解决方案",
   "scripts": {
     "lint": "eslint bin"
