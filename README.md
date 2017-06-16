@@ -9,8 +9,8 @@
   * ES6/7；
   * css预编译&postcss；
   * 图片压缩&base64嵌入；
-  * 模块化规范ES6 Modules&CommonJS&AMD；
-  * 代码规范测试。
+  * 模块化:ES6 Modules&CommonJS&AMD；
+* 多页面开发
 * 一键部署
   * 部署测试环境；
   * 部署生产环境。
@@ -26,7 +26,7 @@
 
 官方网站：[https://boijs.github.io/](https://boijs.github.io/)
 
-文档：[https://zhoujunpeng.gitbooks.io/boi/content/](https://zhoujunpeng.gitbooks.io/boi/content/)
+文档：[https://zhoujunpeng.gitbooks.io/boi/content/](https://boijs.github.io/docs)
 
 ### License
 
