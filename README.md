@@ -1,36 +1,91 @@
-![](assets/slogan.png)
+<div align=center>
 
-一站式前端工程解决方案。
+![](assets/slogan.jpg)
+
+[![license](https://img.shields.io/github/license/boijs/boi.svg?style=plastic)](https://github.com/boijs/boi/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/v/boi.svg?style=plastic)](https://www.npmjs.com/package/boi)
+
+Frontend development tool chains for gracefull workflow.
+</div>
 ---
 
-功能包括：
-* 脚手架；
-* 基于webpack的编译系统；
-  * ES6/7；
-  * css预编译&postcss；
-  * 图片压缩&base64嵌入；
-  * 模块化:ES6 Modules&CommonJS&AMD；
-* 多页面开发
-* 一键部署
-  * 部署测试环境；
-  * 部署生产环境。
-* 本地服务器
-  * mock服务；
-  * 动态编译；
-  * 浏览器自动刷新。
-* boi扩展
-  * boi插件系统；
-  * 可定制脚手架；
-  * 自定义代码规范。
+## Installation
+```bash
+npm install boi -g
+```
+
+> Boi v3.x has been released with 'next' tag,just run `npm install boi@next -g`.
+
+## Introduction
+### Official site
+[Boi - Work Gracefully](https://boijs.github.io/)
+
+### Documentation
+[Documentation](https://boijs.github.io/docs)
+
+### Features
+* [Scaffold]()
+* [Webpack based build system]()
+  * [ECMAScript]()
+  * [CSS pre-processor]()
+  * [Autoprefixer]()
+  * [Auto generate CSS Sprites]()
+  * [Server Side Render]()
+  * [Image compresstion]() & [Base64]()
+  * [Multipage webapp]()
+* [DevServer]()
+  * [HMR]()
+  * [Livereload]()
+* [Mock Server]()
+  * [Boi integration]()
+  * [Node.js integration]()
+* [Deployment]()
+* [Extensible]()
+  * [Boi plugins]()
+  * [Generator tempalte]()
 
 
-官方网站：[https://boijs.github.io/](https://boijs.github.io/)
+## Usage
+Create new project:
+```bash
+boi new webapp -t <template>
+```
 
-文档：[https://zhoujunpeng.gitbooks.io/boi/content/](https://boijs.github.io/docs)
+> use [boiapp](https://github.com/boijs/generator-boiapp) template by default
 
-### License
+Run dev server:
+```bash
+boi server
+```
 
-MIT License
+> You will need to add `-i` option when you first run dev server or build/compile,[click here to get more infomation]()
+
+Build/Compile the project:
+```bash
+boi build -e <env>
+```
+or
+```bash
+boi compile -e <env>
+```
+
+> `<env>` would be 'testing' if not be specified,[click here to get more infomation]().
+
+Deploy your project to remote server which support SFTP protocol:
+```
+boi deploy -e <env>
+```
+or
+```
+boi release -e <env>
+```
+
+## Authors
+* **zhoujunpeng**
+
+## License
+
+[MIT License](./LICENSE)
 
 Copyright (c) 2016 boijs
 
