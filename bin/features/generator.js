@@ -16,7 +16,7 @@ module.exports = (dirname, template) => {
 
   if (!dirname || dirname === '.' || dirname === './') {
     // 如果不指定appname则取值当前目录名称
-    appname = _.last(process.pwd().split(/\//));
+    appname = _.last(process.cwd().split(/\//));
     inCurrentDir = true;
   } else {
     // 如果指定appname则创建子目录

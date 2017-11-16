@@ -44,9 +44,9 @@ Cli.option('-v, --version', 'print Boi version', () => {
 });
 
 // 脚手架
-Cli.command('new <type>')
+Cli.command('new [type]')
   .description('generate a new app or page')
-  .usage('<type> [options]')
+  .usage('[type] [options]')
   .option('-t, --template [template]', 'specify template of new app')
   .option('-p, --path [path]', 'specify pathname of new app')
   .action((type, options) => {

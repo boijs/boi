@@ -7,7 +7,6 @@
 
 Frontend development tool chains for gracefull workflow.
 </div>
----
 
 ## Installation
 ```bash
@@ -55,7 +54,7 @@ boi new webapp -t <template>
 
 Run dev server:
 ```bash
-boi server
+boi serve
 ```
 
 > You will need to add `-i` option when you first run dev server or build/compile,[click here to get more infomation]()
