@@ -13,8 +13,6 @@ Frontend development tool chains for gracefull workflow.
 npm install boi -g
 ```
 
-> Boi v3.x has been released with 'next' tag,just run `npm install boi@next -g`.
-
 ## Introduction
 ### Official site
 [Boi - Work Gracefully](https://boijs.github.io/)
