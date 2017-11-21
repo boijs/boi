@@ -1,6 +1,6 @@
 {
   "name": "boi",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Frontend development tool chains for gracefull workflow",
   "scripts": {
     "lint": "eslint boi"
@@ -9,11 +9,11 @@
     "boi": "bin/boi.js"
   },
   "dependencies": {
-    "boi-compiler": "latest",
-    "boi-deploy": "latest",
-    "boi-mock": "latest",
-    "boi-parser": "latest",
-    "boi-server": "latest",
+    "boi-compiler": "0.0.4",
+    "boi-deploy": "0.0.1",
+    "boi-mock": "0.0.1",
+    "boi-parser": "0.0.5",
+    "boi-server": "0.0.4",
     "chalk": "^1.1.3",
     "commander": "^2.9.0",
     "ora": "^1.1.0",
