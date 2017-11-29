@@ -5,7 +5,7 @@
 [![license](https://img.shields.io/github/license/boijs/boi.svg?style=plastic)](https://github.com/boijs/boi/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/v/boi.svg?style=plastic)](https://www.npmjs.com/package/boi)
 
-Frontend development tool chains for gracefull workflow.
+Frontend development toolchains for graceful workflow.
 </div>
 
 ## Installation

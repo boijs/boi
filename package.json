@@ -1,7 +1,7 @@
 {
   "name": "boi",
   "version": "3.0.3",
-  "description": "Frontend development tool chains for gracefull workflow",
+  "description": "Frontend development toolchains for graceful workflow",
   "scripts": {
     "lint": "eslint boi"
   },
